@@ -17,8 +17,11 @@ function Home() {
         internet onde jovens possam aprender, ensinar e construir juntos. <br/><br/> Esse
         será um lugar para compartilhar conhecimentos, ideias, projetos,
         desafios, experiências e muito mais, ajudando jovens programadores a se
-        <strong>conectarem</strong>, se <strong>destacarem</strong> e <strong>fortalecerem sua presença</strong> no universo da
-        tecnologia.</p>
+        <strong> conectarem</strong>, se <strong>destacarem</strong> e <strong>fortalecerem sua presença</strong> no universo da
+        tecnologia. <br></br><br></br>
+
+        Dessa forma, programadores jovens irão surgir cada vez mais e, usando seus <strong style={{textDecoration: "italic"}}>grandes potenciais</strong> - sua energia e seu tempo disponíveis - para construir softwares que facilitem a vida das pessoas. tornando o mundo, ou pelo menos uma pequena parte dele, um lugar melhor.
+        </p>
       </div>
       <footer>
         <h3 style={{fontFamily: "cursive", backgroundColor: "#00ace2", color: "white", padding: 10, borderRadius: 7}}>
