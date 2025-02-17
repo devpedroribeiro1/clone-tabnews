@@ -9,10 +9,10 @@ test("GET to /api/v1/status should return 200", async () => {
   const parsedDate = new Date(responseBody.updated_at).toISOString();
   expect(responseBody.updated_at).toEqual(parsedDate);
 
-  //espera que a versão do postgres exista(não sei como aumentar a cobertura)
-  expect(responseBody.database_info.server_version).toBeDefined();
+  //espera que a versão do postgres seja 16.0
+  expect(responseBody.database_info.server_version).toEqual("16.0");
 
-  //espera que o máximo de conexões do postgres exista(mesma coisa)
+  //espera que o máximo de conexões do postgres exista(não sei como aumentar a cobertura)
   expect(responseBody.database_info.max_connections).toBeDefined();
 
   // espera que o "conexões atuais" exista
