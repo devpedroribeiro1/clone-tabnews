@@ -34,5 +34,6 @@ export default async function migrations(request, response) {
     return response.status(200).json(migratedMigrations);
   }
 
-  return response.status(405).json({message: "retornando mensagem de erro caso não seja get nem post"})
+  dbClient.end();
+  return response.status(405)
 }
