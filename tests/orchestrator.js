@@ -1,18 +1,18 @@
-import retry from 'async-retry';
+import retry from "async-retry";
 
-async function waitForServices(){
+async function waitForServices() {
   await waitForWebService();
 
-  async function waitForWebService(){
+  async function waitForWebService() {
     return retry(fetchStatusPage, {
       retries: 100,
       maxTimeout: 1000,
     });
 
-    async function fetchStatusPage(bail, tryNumber)  {
-      const response = await fetch('http://localhost:3000/api/v1/status');
-      
-      if(response.status !== 200){
+    async function fetchStatusPage(bail, tryNumber) {
+      const response = await fetch("http://localhost:3000/api/v1/status");
+
+      if (response.status !== 200) {
         throw Error();
       }
     }
@@ -21,4 +21,4 @@ async function waitForServices(){
 
 export default {
   waitForServices,
-}
+};
