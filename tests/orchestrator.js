@@ -21,6 +21,6 @@ async function waitForServices() {
 
 const orchestrator = {
   waitForServices,
-}
+};
 
 export default orchestrator;

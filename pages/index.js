@@ -23,9 +23,9 @@ function Home() {
           estudos, tive contato com poucos adolescentes ou jovens{" "}
           <strong>na minha faixa etária</strong> que estivessem à minha frente
           na programação. Isso não se deve à minha &quot
-          <strong>super mega capacidade de programar</strong>&quot, mas à falta de
-          visibilidade e contato que <strong>jovens programadores</strong> têm
-          dentro mercado de tecnologia e softwares.{" "}
+          <strong>super mega capacidade de programar</strong>&quot, mas à falta
+          de visibilidade e contato que <strong>jovens programadores</strong>{" "}
+          têm dentro mercado de tecnologia e softwares.{" "}
           <strong>Programadores jovens existem</strong>, mas na maioria das
           vezes não conseguem se conectar e mostrar seu potencial ao mundo.{" "}
           <br />
