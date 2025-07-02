@@ -16,6 +16,7 @@ jobs:
       - run: npm ci
 
       - run: npm run lint:prettier:check
+
   eslint:
     name: Eslint
     runs-on: ubuntu-latest
@@ -29,6 +30,7 @@ jobs:
       - run: npm ci
 
       - run: npm run lint:eslint:check
+
   commitlint:
     name: Commitlint
     runs-on: ubuntu-latest
@@ -44,3 +46,14 @@ jobs:
       - run: npm ci
 
       - run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+  trufflehog:
+    name: Trufflehog
+    runs-on: ubuntu-latest
+    steps:
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+      uses: trufflesecurity/trufflehog@main
+      with:
+        extra_args: --results=verified,unknown
