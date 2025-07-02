@@ -51,9 +51,14 @@ jobs:
     name: Trufflehog
     runs-on: ubuntu-latest
     steps:
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-      uses: trufflesecurity/trufflehog@main
-      with:
-        extra_args: --results=verified,unknown
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: trufflesecurity/trufflehog@main
+        with:
+          # muda para o modo filesystem
+          source: filesystem
+          workdir: ./
+          # mostra até secrets não verificados
+          extra_args: --debug --no-verification
