@@ -18,7 +18,6 @@ export default router.handler({
   },
   onNoMatch: (request, response) => {
     const publicErrorObject = new MethodNotAllowedError();
-    console.log("see here: ", JSON.stringify(publicErrorObject));
     response.status(405).json(publicErrorObject);
   },
 });
