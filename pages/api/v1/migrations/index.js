@@ -1,17 +1,6 @@
-import migrationRunner from "node-pg-migrate";
-import { resolve } from "node:path";
-import db from "infra/database.js";
 import { createRouter } from "next-connect";
 import controller from "infra/controller.js";
-
-const defaultMigrationOptions = {
-  dir: resolve("infra", "migrations"),
-  dryRun: true,
-  direction: "up",
-  verbose: true,
-  migrationsTable: "pgmigrations",
-};
-let dbClient;
+import migrator from "models/migrator.js";
 
 const router = createRouter();
 router.get(getHandler);
@@ -20,43 +9,16 @@ router.post(postHandler);
 export default router.handler(controller.errorHandlers);
 
 async function postHandler(request, response) {
-  dbClient = await db.getNewClient();
-  try {
-    const migrationOptions = {
-      ...defaultMigrationOptions,
-      dryRun: false,
-      dbClient,
-    };
-    const migratedMigrations = await migrationRunner(migrationOptions);
+  const migratedMigrations = await migrator.runPendingMigrations();
 
-    if (migratedMigrations.length > 0) {
-      return response.status(201).json(migratedMigrations);
-    }
-    return response.status(200).json(migratedMigrations);
-  } catch (e) {
-    console.log("Erro no catch do postHandler: ");
-    console.error(e);
-    throw e;
-  } finally {
-    dbClient.end();
+  if (migratedMigrations.length > 0) {
+    return response.status(201).json(migratedMigrations);
   }
+  return response.status(200).json(migratedMigrations);
 }
 
 async function getHandler(request, response) {
-  try {
-    dbClient = await db.getNewClient();
-    const migrationOptions = {
-      ...defaultMigrationOptions,
-      dbClient,
-    };
-    const pendingMigrations = await migrationRunner(migrationOptions);
+  const pendingMigrations = await migrator.listPendingMigrations();
 
-    return response.status(200).json(pendingMigrations);
-  } catch (e) {
-    console.log("Erro no catch do getHandler: ");
-    console.error(e);
-    throw e;
-  } finally {
-    dbClient.end();
-  }
+  return response.status(200).json(pendingMigrations);
 }
